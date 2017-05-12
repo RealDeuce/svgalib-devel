@@ -12,3 +12,9 @@ syscons(4) instead by adding the line "kern.vty=sc" to /boot/loader.conf.
 
 I'll be committing this to the ports collection once I have it working with
 AdvanceMAME on my system and I do at least some testing on -STABLE.
+
+At present, the kernel module is still not completely locked down.  It will
+allow use of the entire legacy I/O port range, and the majority of low memory
+areas.  Also, the ioctl()s do not properly check and sanitize permissions and
+inputs.  In short, at present the kernel module as currently implemented may
+actually be less secure than setuid root binaries.
