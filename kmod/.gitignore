@@ -1,0 +1,10 @@
+/.depend.*.o
+/bus_if.h
+/device_if.h
+/export_syms
+/*.o
+/machine
+pci_if.h
+/*.kld
+/*.ko
+/x86
