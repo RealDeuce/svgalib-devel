@@ -400,28 +400,11 @@ svga_mmap(struct cdev *dev, vm_ooffset_t offset, vm_paddr_t *paddr,
 {
 	struct sh_pci_device *sdev = dev->si_drv1;
 
-	if(check_mem(sdev, offset, PAGE_SIZE)) {
-printf("Offset %lld not allowed in %s\n", offset, sdev->cdev->si_name);
+	if(check_mem(sdev, offset, PAGE_SIZE))
 		return -EPERM;
-	}
 	*paddr = offset;
 	return 0;
 }
-
-#if 0
-static int
-svga_mmap_single(struct cdev *cdev, vm_ooffset_t *offset,
-    vm_size_t size, struct vm_object **object, int nprot)
-{
-	struct sh_pci_device *sdev = dev->si_drv1;
-	struct vm_object *vm_obj;
-
-	if(check_mem(sdev, offset, size))
-		return -EPERM;
-	vm_obj = cdev_pager_allocate(XXXobject, size, nprot, XXXoffset, nprot);
-	return -EOPNOTSUPP;
-}
-#endif
 
 static struct cdev *svga_alias;
 static int

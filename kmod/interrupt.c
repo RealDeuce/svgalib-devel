@@ -351,10 +351,8 @@ vga_init_vsync(struct sh_pci_device *dev)
 		dev->enable_vsync = vga_enable_vsync;
 		dev->disable_vsync = vga_ack_vsync;
 	}
-	if (PCI_INTERRUPT_VALID(dev->irq)) {
+	if (PCI_INTERRUPT_VALID(dev->irq))
 		dev->irqresource = bus_alloc_resource_any(dev->dev, SYS_RES_IRQ, &dev->irqid, RF_ACTIVE | RF_SHAREABLE);
-printf("IRQ %u ID %d (%p) Tag=%d Handle=%d\n", dev->irq, dev->irqid, dev->irqresource, dev->irqresource->r_bustag, dev->irqresource->r_bushandle);
-	}
 
 	return 0;
 }

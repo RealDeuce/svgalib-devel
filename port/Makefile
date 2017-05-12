@@ -1,4 +1,4 @@
-# Created by: Maxim Sobolev <sobomax@FreeBSD.org>
+# Created by: Stephen Hurd <shurd@FreeBSD.org>
 # $FreeBSD: head/graphics/svgalib/Makefile 357654 2014-06-13 07:36:27Z olgeni $
 
 PORTNAME=	svgalib
