@@ -1,0 +1,28 @@
+--- src/Makefile.orig	2006-07-14 11:30:31 UTC
++++ src/Makefile
+@@ -453,7 +453,6 @@ libvga.so.$(VERSION): $(ALLOBJS)
+ 
+ $(sharedlibdir)/libvga.so.$(VERSION): libvga.so.$(VERSION)
+ 	$(INSTALL_SHLIB) $< $(sharedlibdir)/$<
+-	-ldconfig
+ 
+ install: $(sharedlibdir)/libvga.so.$(VERSION)
+ 
+@@ -464,7 +463,7 @@ libvga.a: $(ALLOBJS)
+ 	$(AR) rcs libvga.a $(ALLOBJS)
+ 
+ libvgagl.a: FORCE
+-	make -f $(srcdir)/gl/Makefile $@ srcdir="$(srcdir)" DLLFLAGS="$(DLLFLAGS)"
++	$(MAKE) -f $(srcdir)/gl/Makefile $@ srcdir="$(srcdir)" DLLFLAGS="$(DLLFLAGS)"
+ 
+ svgalib_helper.h:
+ 	@ln -sf ../kernel/svgalib_helper/svgalib_helper.h ../src
+@@ -489,7 +488,7 @@ $(MODULES): .depend.src
+ 
+ dep:
+ 	rm -f .depend.src
+-	make .depend.src
++	$(MAKE) .depend.src
+ 
+ .depend.src:
+ 	@ln -sf ../kernel/svgalib_helper/svgalib_helper.h ../src

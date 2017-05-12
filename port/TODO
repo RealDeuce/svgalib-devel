@@ -1,0 +1,6 @@
+Hard-coded paths need fixing.
+Scripts in the utilities as well.
+Mode 5 problem
+Requires insecure NoHelper due to /dev/mem usage
+Add support for kernel helper!
+Doesn't switch back on error (ie: unsupported mode)

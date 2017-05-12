@@ -1,0 +1,11 @@
+--- gl/Makefile.orig	1999-07-18 08:14:45 UTC
++++ gl/Makefile
+@@ -56,7 +56,7 @@ $(MODULES): .depend.gl
+ 
+ dep:
+ 	rm -f .depend.gl
+-	make depend
++	$(MAKE) depend
+ 
+ .depend.gl:
+ 	echo '# GL Module dependencies' >>.depend.gl

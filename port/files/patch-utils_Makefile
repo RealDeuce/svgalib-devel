@@ -1,0 +1,28 @@
+--- utils/Makefile.orig	2005-03-18 10:59:49 UTC
++++ utils/Makefile
+@@ -13,7 +13,8 @@ VPATH     = $(srcdir)/utils
+ # Compiler Section (overrides Makefile.cfg)
+ #----------------------------------------------------------------------
+ 
+-CFLAGS = $(WARN) $(OPTIMIZE) -I../include -L../sharedlib
++CFLAGS = $(WARN) $(OPTIMIZE) -I../include
++LDFLAGS = -L../sharedlib
+ #Use the next one for the Alpha/AXP if you need it
+ #LDFLAGS = -L../staticlib 
+ LIBS = -lvga -lm
+@@ -53,13 +54,13 @@ clean:
+ 
+ dep:
+ 	rm -f .depend
+-	make .depend
++	$(MAKE) .depend
+ 
+ install:
+ 	$(INSTALLPROG) $(UTILPROGS) $(UTILINSTALLDIR)
+ 
+ .depend:
+-	gcc $(INCLUDES) -MM $(patsubst %.o,$(srcdir)/utils/%.c,$(OBJECTS)) >.depend
++	$(CC) $(INCLUDES) -MM $(patsubst %.o,$(srcdir)/utils/%.c,$(OBJECTS)) >.depend
+ 
+ #
+ # include a dependency file if one exists

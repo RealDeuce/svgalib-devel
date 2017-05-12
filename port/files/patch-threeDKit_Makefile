@@ -1,0 +1,20 @@
+--- threeDKit/Makefile.orig	2006-07-14 11:30:49 UTC
++++ threeDKit/Makefile
+@@ -14,7 +14,7 @@ VPATH     = $(srcdir)/src
+ # Compiler Section (overrides Makefile.cfg)
+ #----------------------------------------------------------------------
+ 
+-INCLUDES += -I$(srcdir)/src
++INCLUDES += -I$(srcdir)/src -I$(srcdir)/gl
+ 
+ #----------------------------------------------------------------------
+ # Rules Section
+@@ -58,7 +58,7 @@ lib3dkit.so.$(VERSION): $(OBJECTS)
+ $(sharedlibdir)/lib3dkit.so.$(VERSION): lib3dkit.so.$(VERSION)
+ 	$(INSTALL_SHLIB) $< $(sharedlibdir)/$<
+ 	(cd $(sharedlibdir); ln -sf lib3dkit.so.$(VERSION) `echo lib3dkit.so.$(VERSION) | sed 's/\.so\..*/.so/'` )
+-	-ldconfig
++	(cd $(sharedlibdir); ln -sf lib3dkit.so.$(VERSION) `echo lib3dkit.so.$(VERSION) | sed 's/\.so\..*/.so.$(MAJOR_VER)/'` )
+ 
+ install: $(sharedlibdir)/lib3dkit.so.$(VERSION) installheaders
+ 

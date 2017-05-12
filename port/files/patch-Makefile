@@ -1,0 +1,14 @@
+--- Makefile.orig	2006-07-14 11:42:59 UTC
++++ Makefile
+@@ -98,9 +98,10 @@ installsharedlib: $(SHAREDLIBS) $(SVGALI
+ 		$(INSTALL_SHLIB) sharedlib/$$foo $(sharedlibdir)/$$foo; \
+ 		(cd $(sharedlibdir); \
+ 		 ln -sf $$foo `echo $$foo | sed 's/\.so\..*/.so/'` ); \
++		(cd $(sharedlibdir); \
++		 ln -sf $$foo `echo $$foo | sed 's/\.so\..*/.so.$(MAJOR_VER)/'` ); \
+ 	done
+ 	@./fixldsoconf
+-	-ldconfig
+ 
+ installstaticlib: static
+ 	@echo Installing static libraries in $(libdir).

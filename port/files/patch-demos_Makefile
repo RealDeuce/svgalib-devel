@@ -1,0 +1,10 @@
+--- demos/Makefile.orig	2004-11-16 07:59:52 UTC
++++ demos/Makefile
+@@ -30,6 +30,7 @@ PROGS    = fun testgl speedtest mousetes
+ # Determine what library (static or shared) we will be linking programs with
+ ifdef INSTALLSHAREDLIB
+   LIBS = -lvgagl -lvga
++  LDFLAGS += -L../sharedlib
+ endif
+ ifndef LIBS
+   LIBS    = ../staticlib/libvgagl.a ../staticlib/libvga.a -lm
