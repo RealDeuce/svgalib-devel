@@ -3,12 +3,13 @@
 #include <sys/module.h>
 #include <sys/conf.h>
 #include <sys/systm.h>
-#include <sys/types.h>
 #include <sys/malloc.h>
 #include <sys/bus.h>
 #include <sys/pciio.h>
 #include <dev/pci/pcireg.h>
 #include <dev/pci/pcivar.h>
+#include <vm/vm.h>
+#include <vm/pmap.h>
 #include <machine/bus.h>
 #include <machine/resource.h>
 
@@ -113,22 +114,20 @@ get_dev(int pcipos, struct sh_pci_device *sdev)
 	return NULL;
 }
 
-#ifdef __386__
+#ifdef __i386__
 #define I810_SIZE 1024
 
-unsigned long
+static unsigned long
 i810_alloc_page(void)
 {
-	void *addr;
-
 	return (unsigned long)contigmalloc(PAGE_SIZE, M_SVGALIB, 0, 0, ~0, PAGE_SIZE, PAGE_SIZE);
 }
 
 static unsigned long i810_pages[I810_SIZE];
-unsigned long i810_gttes[I810_SIZE];
+static unsigned int i810_gttes[I810_SIZE];
 static unsigned long i810_gttpage=0;
 
-unsigned int
+static unsigned int
 i810_make_gtt(void)
 {
 	int i;
@@ -289,13 +288,13 @@ svga_ioctl(struct cdev *dev, u_long cmd, caddr_t data,
 		else
 			rc = -EINVAL;
 		break;
-#ifdef __386__
+#ifdef __i386__
 	case SVGAHELPER_I810GTT:
 		*(unsigned int *)data = i810_make_gtt();
 		break;
 	case SVGAHELPER_I810GTTE:
 		if (*(unsigned int *)data < I810_SIZE)
-			*(unsigned int *)data = &i810_gttes[i]);
+			*(unsigned int *)data = (unsigned int)&i810_gttes[*(unsigned int *)data];
 		else
 			return -EINVAL;
 		break;
