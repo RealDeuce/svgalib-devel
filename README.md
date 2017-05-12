@@ -1,6 +1,7 @@
 This is a port of the 1.9.25 development version of SVGAlib to FreeBSD.
 
-There is a kernel module port as well to allow running as non-root.
+There is a port of the kernel module as well to allow running as non-root.
+This will be included in the port once it's "done".
 
 The primary purpose is to allow an arcade monitor to be used with AdvanceMAME
 on FreeBSD.  I can't think of any other reason someone would prefer to use this
