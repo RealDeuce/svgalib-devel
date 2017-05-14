@@ -1,4 +1,4 @@
---- utils/gtf/scitech.h.orig	2017-05-12 07:10:58 UTC
+--- utils/gtf/scitech.h.orig	2017-05-14 08:03:28 UTC
 +++ utils/gtf/scitech.h
 @@ -49,7 +49,7 @@
   *  __UNIX__   		Compiling for Unix

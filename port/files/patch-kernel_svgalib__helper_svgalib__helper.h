@@ -1,4 +1,4 @@
---- kernel/svgalib_helper/svgalib_helper.h.orig	2017-05-12 08:50:14 UTC
+--- kernel/svgalib_helper/svgalib_helper.h.orig	2005-03-13 14:55:03 UTC
 +++ kernel/svgalib_helper/svgalib_helper.h
 @@ -1,35 +1,39 @@
  #ifndef SVGALIB_HELPER_H
