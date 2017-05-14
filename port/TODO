@@ -2,3 +2,4 @@ Hard-coded paths need fixing.
 Scripts in the utilities as well.
 Requires insecure NoHelper due to /dev/mem usage
 Doesn't switch back on error (ie: unsupported mode)
+Keyboard arrow keys don't seem to work properly
